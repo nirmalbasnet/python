@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=caching_sha2_password
+    env_file:
+      - instance/config.py
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  mysql_data:
+    driver: local
